@@ -3,6 +3,8 @@ import ConnectDB from "./config/connectDB";
 import configViewEngine from "./config/viewEngine";
 import initRouters from "./routers/web";
 import bodyParser from "body-parser";
+import connectFlash from "connect-flash";
+import connectSession from "./config/session";
 
 // init app
 let app = express();
@@ -10,11 +12,17 @@ let app = express();
 //Connect to DB
 ConnectDB();
 
+// Config Session
+connectSession(app);
+
 // Config viewEngine
 configViewEngine(app);
 
 // Enable post data for request
 app.use(bodyParser.urlencoded({extended: true}));
+
+// Enable flash messages
+app.use(connectFlash());
 
 // Init all  routers
 initRouters(app);
