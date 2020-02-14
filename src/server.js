@@ -4,7 +4,8 @@ import configViewEngine from "./config/viewEngine";
 import initRouters from "./routers/web";
 import bodyParser from "body-parser";
 import connectFlash from "connect-flash";
-import connectSession from "./config/session";
+import configSession from "./config/session";
+import passport from "passport";
 
 // init app
 let app = express();
@@ -13,7 +14,7 @@ let app = express();
 ConnectDB();
 
 // Config Session
-connectSession(app);
+configSession(app);
 
 // Config viewEngine
 configViewEngine(app);
@@ -23,6 +24,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // Enable flash messages
 app.use(connectFlash());
+
+// Config PassportJS
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Init all  routers
 initRouters(app);

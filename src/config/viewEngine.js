@@ -4,7 +4,7 @@ import expressEjsExtend from "express-ejs-extend";
 /**
  * Config view engine for app
  */
-let configviewEngine = (app) => {
+let configViewEngine = (app) => {
   //khai bao dia chi thu vien   
   app.use(express.static("./src/public"));
   //Cau hinh cho ejs them expressEjsExtend
@@ -14,4 +14,4 @@ let configviewEngine = (app) => {
   app.set("views", "./src/views");
 };
 
-module.exports = configviewEngine;
+module.exports = configViewEngine;

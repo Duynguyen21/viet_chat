@@ -12,9 +12,9 @@ let postRegister = async (req, res) => {
   let errorArray = [];
   let successAray = [];
 
-  let validationError = validationResult(req);
-  if(!validationError.isEmpty()){
-    let errors = Object.values(validationError.mapped());
+  let validationErrors = validationResult(req);
+  if(!validationErrors.isEmpty()){
+    let errors = Object.values(validationErrors.mapped());
     errors.forEach(item => {
       errorArray.push(item.msg);
     });
@@ -46,7 +46,7 @@ let verifyAccount = async(req, res) => {
 
   } catch (error) {
     errorArray.push(error);
-    req.flash("error", errorArray);
+    req.flash("errors", errorArray);
     return res.redirect("/login-register");
   }
 };
