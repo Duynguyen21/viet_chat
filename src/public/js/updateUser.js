@@ -67,24 +67,40 @@ function updateUserInfo() {
 $(document).ready(function () {
   updateUserInfo();
 
-  originAvatarSrc = $("#user-modal-avatar").attr("src")
+  originAvatarSrc = $("#user-modal-avatar").attr("src");
+
   $("#input-btn-update-user").bind("click", function () {
     if ($.isEmptyObject(userInfo) && !userAvatar) {
       alertify.notify("Bạn phải thay đổi thông tin trước khi cập nhật dữ liệu ", "error", 7);
       return false;
     }
+
     $.ajax({
       url: "/user/update-avatar",
-      type: "put", 
+      type: "PUT", 
       cache: false,
       contentType: false,
       processData: false,
       data: userAvatar,
       success: function(result){
+        console.log(result);
+        //Displat success
+        $(" .user-modal-alert-success " ).find("span").text(result.message);
+        $(" .user-modal-alert-success " ).css("display", "block");
+
+        //Update avatar at navbar for Home
+        $("#navbar-avatar").attr("src", result.imageSrc);
+
+        //Update origin AvatarSrc
+        originAvatarSrc = result.imageSrc;
 
       },
       error: function(error){
-
+        console.log(error);
+        $(" .user-modal-alert-error " ).find("span").text(error.responseText);
+        $(" .user-modal-alert-error " ).css("display", "block");
+        //reset all
+        $("#input-btn-cancel-update-user").click();
       },
     });
   });
@@ -92,6 +108,7 @@ $(document).ready(function () {
   $("#input-btn-cancel-update-user").bind("click", function () {
     userAvatar = null;
     userInfo = {};
+    $("#input-change-avatar").val(null);
     $("#user-modal-avatar").attr("src", originAvatarSrc);
   });
 });
