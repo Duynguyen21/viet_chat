@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Awesome Chat</title>
     <meta charset="UTF-8">
@@ -14,16 +15,17 @@
 
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body onload="spinLoaded()">
     <!--Icon loader-->
     <div id="loader"></div>
-    
+
     <%- include('alert/alert'); %>
 
     <%- include('navbar/navbar'); %>
-    
+
     <%- content %>
-    
+
 
     <!--Libraries-->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -41,23 +43,26 @@
 
     <!-- My js-->
     <script src="js/mainConfig.js"></script>
+    <script src="js/updateUser.js"></script>
+
 
     <%- include('contacts/contactsModal'); %>
-    
+
 
     <%- include('streaming/streamingModal'); %>
-      
+
 
     <%- include('images/imagesModal'); %>
-   
-    
+
+
     <%- include('attachs/attachsModal'); %>
-    
-        
+
+
     <%- include('users/usersModal'); %>
-   
+
 
     <%- include('groupChat/groupChatModal'); %>
-    
+
 </body>
+
 </html>
