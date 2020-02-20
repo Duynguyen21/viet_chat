@@ -5,15 +5,15 @@ let Schema = mongoose.Schema;
 let NotificationSchema = new Schema({
   sender: {
     id: String,
-    userName: String,
+    username: String,
     avatar: String,
   },
   receiver: {
     id: String,
-    userName: String,
+    username: String,
     avatar: String,
   },
-  tepe: String,
+  type: String,
   content: String,
   isread: {type: Boolean, default: false},
   createdAt: {type: Number, default: Date.now},

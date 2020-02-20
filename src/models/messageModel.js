@@ -5,12 +5,12 @@ let Schema = mongoose.Schema;
 let MessageSchema = new Schema({
   sender: {
     id: String,
-    userName: String,
+    username: String,
     avatar: String,
   },
   receiver: {
     id: String,
-    userName: String,
+    username: String,
     avatar: String,
   },
   text: String,
