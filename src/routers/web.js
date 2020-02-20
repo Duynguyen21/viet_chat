@@ -5,7 +5,7 @@ import {
   user
 } from "./../controllers/index";
 import {
-  authValid
+  authValid, userValid
 } from "./../validation/index";
 import passport from "passport";
 import initPassportLocal from "./../controllers/passportController/local";
@@ -62,6 +62,8 @@ let initRouters = (app) => {
   router.get("/logout", auth.checkLoggedIn, auth.getLogout);
 
   router.put("/user/update-avatar", auth.checkLoggedIn, user.updateAvatar);
+
+  router.put("/user/update-info", auth.checkLoggedIn, userValid.updateInfo, user.updateInfo );
 
   return app.use("/", router);
 };
