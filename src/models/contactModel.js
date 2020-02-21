@@ -27,6 +27,39 @@ ContactSchema.statics = {
       ]
     }).exec();
   },
+  /**
+   * Check exist of 2 user
+   * @param{} userId
+   * @param{} contactId
+   */
+  checkExists(userId, contactId){
+    return this.findOne({
+      $or:  [
+        {$and: [
+          {"userId": userId},
+          {"contactId": contactId},
+        ]},
+        {$and: [
+          {"userId": contactId},
+          {"contactId": userId},
+        ]},
+      ]
+    }).exec();
+  },
+ /**
+  * remove requesst contact
+   * @param{} userId
+   * @param{} contactId
+  */
+  removeRequestContact(userId, contactId){
+    return this.remove({
+      $and: [
+        {"userId": userId},
+        {"contactId": contactId},
+      ]
+    }).exec();
+  },
+  
 };
 
 module.exports = mongoose.model("contact", ContactSchema);

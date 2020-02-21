@@ -16,7 +16,6 @@ let register = (email, gender, password, protocol, host) => {
     if (userByEmail) {
       if (userByEmail.deletedAt() != null) {
         return reject(transErrors.account_removed);
-
       }
       if (!userByEmail.local.isActive) {
         return reject(transErrors.account_not_active);
@@ -65,4 +64,4 @@ let verifyAccount = (token) => {
 module.exports = {
   register: register,
   verifyAccount: verifyAccount
-}
+};
