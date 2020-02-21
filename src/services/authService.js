@@ -8,7 +8,7 @@ import {
 } from "./../../lang/vi";
 import sendMail from "./../config/emailler";
 
-let saltRounds = 7;
+let saltRounds = 10;
 
 let register = (email, gender, password, protocol, host) => {
   return new Promise(async (resolve, reject) => {
