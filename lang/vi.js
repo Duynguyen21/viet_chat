@@ -7,6 +7,7 @@ export const transValidation = {
   update_gender: "Oops dữ liệu giới tính có vấn đề , bạn hack ư",
   update_address: "Địa chỉ giới hạn 3 đến 70 ký tự ",
   update_phone:  "Số điện thoại bắt đầu bằng số 0 và chỉ 10 ký tự ",
+  keyword_find_user: "Lỗi từ khóa tìm kiếm, chỉ cho phép chữ cái chữ số và dấu khoảng trắng"
 };
 
 export const transErrors = {

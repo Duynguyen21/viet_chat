@@ -41,12 +41,10 @@ let register = (email, gender, password, protocol, host) => {
     sendMail(email, transMail.subject, transMail.template(linkVerify))
       .then(success => {
         resolve(transSuccess.userCreated(user.local.email));
-        console.log(linkVerify)
       })
       .catch(async (error) => {
         // remove user
         await UserModel.removeById(user._id);
-        console.log(error);
         reject(transMail.send_failed);
       });
   });
