@@ -32,7 +32,13 @@
           <li>
               <a href="#contactsModal" data-toggle="modal" title="Quản lý liên lạc" id="show-modal-contacts">
                   <i class="fa fa-user-plus"></i>
-                  <div class="noti_contact_counter"></div>
+                  <% if((countAllContactsSent + countAllContactsReceived) > 0) { %>
+                    <div class="noti_contact_counter">
+                        <%= (countAllContactsSent + countAllContactsReceived) %>
+                    </div>
+                    <% } else { %>
+                        <div class="noti_contact_counter display-none"></div>
+                    <% } %>
               </a>
           </li>
           <li>
@@ -43,12 +49,12 @@
                         <%= countNotifUnread  %>
                     </div>
                     <% } else { %>
-                        <div class="noti_counter display-none"></div>
+                        <div class="noti_counter"></div>
                     <% } %>
 
                   <div id="noti_Container">
                       <div id="notifications">
-                          <a href="javascript:void(0)" id="popup-mark-notif-as-read">
+                          <a href="javascript:void(0)" id="popup-mark-notif-as-read " data-toggle="modal">
                               Đánh dấu tất cả là đã đọc
                             </a>
                           <div class="noti_content">
