@@ -5,6 +5,7 @@ import passport from "passport";
 import initPassportLocal from "./../controllers/passportController/local";
 import initPassportFacebook from "./../controllers/passportController/facebook";
 import initPassportGoogle from "./../controllers/passportController/google";
+import { notification } from "../services";
 
 
 // Init all pasport
@@ -58,7 +59,8 @@ let initRouters = (app) => {
   router.get("/contact/find-users/:keyword", auth.checkLoggedIn,contactValid.findUsersContact, contact.findUsersContact);
   router.post("/contact/add-new", auth.checkLoggedIn, contact.addNew);
   router.delete("/contact/remove-request-contact", auth.checkLoggedIn, contact.removeRequestContact);
-  router.get("/notification/read-more", auth.checkLoggedIn);
+  router.get("/notification/read-more", auth.checkLoggedIn, notification.readMore);
+  router.put("/notification/mark-all-as-read", auth.checkLoggedIn, notification.markAllAsRead);
 
   return app.use("/", router);
 };

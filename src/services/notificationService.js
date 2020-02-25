@@ -50,7 +50,7 @@ let countNotifUnread = (currentUserId) => {
 let readMore = (currentUserId, skipNumberNotification) => {
   return new Promise(async (resolve, reject) => {
     try {
-      let newNotifications =  await NotificationModel.model.readmore(currentUserId, skipNumberNotification, LIMIT_NUMBER_TAKEN);
+      let newNotifications =  await NotificationModel.model.readMore(currentUserId, skipNumberNotification, LIMIT_NUMBER_TAKEN);
       let getNotifContents = newNotifications.map(async (notification) => {
         let sender = await UserModel.findUserById(notification.senderId);
         return NotificationModel.contents.getContent(notification.type, notification.isRead, sender._id, sender.username, sender.avatar);
@@ -63,8 +63,28 @@ let readMore = (currentUserId, skipNumberNotification) => {
   
 };
 
+/**
+ * 
+ * @param {string} currentUserId 
+ * @param {array} targetUsers 
+ */
+
+let markAllAsRead = (currentUserId, targetUsers) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+    await NotificationModel.model.markAllAsRead(currentUserId, targetUsers);
+    resolve(true);
+    } catch (error) {
+    
+      reject (error);
+    }
+  });
+};
+
+
 module.exports = {
   getNotifications: getNotifications,
   countNotifUnread: countNotifUnread,
-  readMore: readMore
+  readMore: readMore,
+  markAllAsRead: markAllAsRead
 };
