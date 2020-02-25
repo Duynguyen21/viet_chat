@@ -1294,6 +1294,18 @@ label:focus,
   text-align: center;
 }
 
+.read-more-contacts{
+  text-align: center;
+}
+
+.read-more-contacts-sent{
+  text-align: center;
+}
+
+.read-more-contacts-received{
+  text-align: center;
+}
+
 .read-more-notif-loader {
   display: inline-block;
   position: relative;

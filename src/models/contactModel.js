@@ -59,7 +59,99 @@ ContactSchema.statics = {
       ]
     }).exec();
   },
+
+  /**
+   * get contact by user by id
+   * @param {string} userId 
+   * @param {number} limit 
+   */
+  getContacts(userId, limit){
+    return this.find({
+      $and: [
+        {$or: [
+          {"userId": userId},
+          {"contactId": userId}
+        ]},
+        {"status": true}
+      ]
+    }).sort({"createdAt": -1 }).limit(limit).exec();
+  },
+
+  /**
+   * get contacts sent userId and limit 
+   * @param {string} userId 
+   * @param {number} limit 
+   */
+  getContactsSent(userId, limit){
+    return this.find({
+      $and: [
+        {"userId": userId},
+        {"status": false}
+      ]
+    }).sort({"createdAt": -1 }).limit(limit).exec();
+  },
   
+    /**
+   * get contacts receiver userId and limit 
+   * @param {string} userId 
+   * @param {number} limit 
+   */
+  getContactsReceived(userId, limit){
+    return this.find({
+      $and: [
+        {"contactId": userId},
+        {"status": false}
+      ]
+    }).sort({"createdAt": -1 }).limit(limit).exec();
+  },
+
+  /**
+   * count contact by userId
+   * @param {string} userId 
+   */
+  countAllContacts(userId){
+    return this.count({
+      $and: [
+        {$or: [
+          {"userId": userId},
+          {"contactId": userId}
+        ]},
+        {"status": true}
+      ]
+    }).exec();
+  },
+
+   /**
+   * count contact sent userId
+   * @param {string} userId 
+   */
+  countAllContactsSent(userId){
+    return this.count({
+      $and: [
+        {$or: [
+          {"userId": userId},
+          {"contactId": userId}
+        ]},
+        {"status": true}
+      ]
+    }).exec();
+  },
+
+   /**
+   * count contact received userId
+   * @param {string} userId 
+   */
+  countAllContactsReceived(userId){
+    return this.count({
+      $and: [
+        {$or: [
+          {"userId": userId},
+          {"contactId": userId}
+        ]},
+        {"status": true}
+      ]
+    }).exec();
+  }
 };
 
 module.exports = mongoose.model("contact", ContactSchema);
