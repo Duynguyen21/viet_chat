@@ -22,5 +22,6 @@ let markAllAsRead = async(req, res) => {
 };
 
 module.exports = {
-  readMore: readMore
+  readMore: readMore,
+  markAllAsRead: markAllAsRead
 };

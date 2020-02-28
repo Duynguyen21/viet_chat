@@ -165,7 +165,7 @@ let readMoreContacts = (currentUserId, skipNumberContacts) => {
       reject (error);
     }
   });
-}
+};
 
 let readMoreContactsSent = (currentUserId, skipNumberContacts) => {
   return new Promise(async (resolve, reject) => {
@@ -179,7 +179,7 @@ let readMoreContactsSent = (currentUserId, skipNumberContacts) => {
       reject (error);
     }
   });
-}
+};
 
 let readMoreContactsReceived = (currentUserId, skipNumberContacts) => {
   return new Promise(async (resolve, reject) => {
@@ -193,12 +193,30 @@ let readMoreContactsReceived = (currentUserId, skipNumberContacts) => {
       reject (error);
     }
   });
-}
+};
+
+let approveRequestContactReceived = (currentUserId, contactId) => {
+  return new Promise (async (resolve, reject) => {
+    let approveReqContact  = await ContactModel.approveRequestContactReceived(currentUserId,contactId);
+      if(approveReqContact.nModified === 0){
+        return reject(false);
+      };
+      let notificationItem = {
+        senderId: currentUserId,
+        receiverId: contactId,
+        type: NotificationModel.types.APPROVE_CONTACT,
+      };
+      await NotificationModel.model.createNew(notificationItem);    
+      resolve(true);  
+  });
+};
+
 module.exports = {
   findUsersContact : findUsersContact,
   addNew: addNew,
   removeRequestContactSent: removeRequestContactSent,
   removeRequestContactReceived: removeRequestContactReceived, 
+  approveRequestContactReceived:approveRequestContactReceived,
   getContacts: getContacts,
   getContactsReceived: getContactsReceived,
   getContactsSent: getContactsSent,
