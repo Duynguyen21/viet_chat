@@ -70,6 +70,17 @@ ContactSchema.statics = {
     $and: [
       {"contactId": userId},
       {"userId": contactId},
+      {"status": false}
+    ]
+  }).exec();
+},
+
+approveRequestContactReceived(userId, contactId){
+  return this.remove({
+    $and: [
+      {"contactId": userId},
+      {"userId": contactId},
+      {"status": false}
     ]
   }).exec();
 },
