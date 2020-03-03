@@ -6,9 +6,9 @@ function addContact(){
         $("#find-user").find(`div.user-add-new-contact[data-uid = ${targetId}]`).hide();
         $("#find-user").find(`div.user-remove-request-contact-sent[data-uid = ${targetId}]`).css("display", "inline-block");
 
-        increaseNumberNotification("noti_contact_counter", 1); //js/caculateNotification.js
-
         increaseNumberNotifContact("count-request-contact-sent"); //js/caculateNotifiContact.js
+
+        increaseNumberNotification("noti_contact_counter", 1); //js/caculateNotification.js 
 
         // thêm ở modal tab đang chờ xác nhận
         let userInfoHtml = $("#find-user").find(`ul li[data-uid = ${targetId}]`).get(0).outerHTML;
@@ -51,7 +51,7 @@ socket.on("response-add-new-contact", function(user){
                                 <div class="user-address">
                                     <span>&nbsp ${user.address}</span>
                                 </div>
-                                <div class="user-approve-contact-received" data-uid="${user.id}">
+                                <div class="user-approve-request-contact-received" data-uid="${user.id}">
                                     Chấp nhận
                                 </div>
                                 <div class="user-remove-request-contact-received action-danger" data-uid="${user.id}">

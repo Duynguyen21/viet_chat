@@ -28,7 +28,7 @@ socket.on("response-remove-request-contact-sent", function(user){
   $("ul.list-notifications").find(`li>div[data-uid = ${user.id}]`).parent().remove();
 
   // Xóa ở modal tab yêu cầu kết bạn  
-  $("#request-contact-received").find(`li[dât-uid = ${user.id}]`).remove();
+  $("#request-contact-received").find(`li[data-uid = ${user.id}]`).remove();
 
   decreaseNumberNotifContact("count-request-contact-received"); //js/caculateNotifiContact.js
 

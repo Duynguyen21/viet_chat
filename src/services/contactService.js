@@ -64,6 +64,7 @@ let removeRequestContactReceived = (currentUserId, contactId) => {
       if(removeReqContact.result.n === 0){
         return reject(false);
       };
+      //remove notification chưa lam
       // let notifAddContact = NotificationModel.types.ADD_CONTACT;
       // await NotificationModel.model.removeRequestContactReceivedNotification(currentUserId, contactId, notifAddContact);
       resolve(true); 
@@ -221,7 +222,7 @@ module.exports = {
   getContactsReceived: getContactsReceived,
   getContactsSent: getContactsSent,
   countAllContacts: countAllContacts,
-  countAllContactsSent: countAllContactsSent,
+  countAllContactsSent: countAllContactsSent, 
   countAllContactsReceived: countAllContactsReceived,
   readMoreContacts: readMoreContacts,
   readMoreContactsSent: readMoreContactsSent,

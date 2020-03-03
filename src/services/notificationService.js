@@ -51,11 +51,13 @@ let readMore = (currentUserId, skipNumberNotification) => {
   return new Promise(async (resolve, reject) => {
     try {
       let newNotifications =  await NotificationModel.model.readMore(currentUserId, skipNumberNotification, LIMIT_NUMBER_TAKEN);
+      
       let getNotifContents = newNotifications.map(async (notification) => {
         let sender = await UserModel.getNormalUserDataById(notification.senderId);
         return NotificationModel.contents.getContent(notification.type, notification.isRead, sender._id, sender.username, sender.avatar);
       });
       resolve(await Promise.all(getNotifContents));
+      
     } catch (error) {
       reject (error);
     }

@@ -6,7 +6,7 @@ $(document).ready(function() {
     
     $.get(`/contact/read-more-contacts?skipNumber=${skipNumber}`, function(newContactUsers){
        if(!newContactUsers.length){
-         alerttify.notify("Bạn không còn bạn bè nào để xem", "error", 7);
+         alertify.notify("Bạn không còn bạn bè nào để xem", "error", 7);
          $("#link-read-more-contacts").css("display", "inline-block");
          $(".read-more-contacts-loader").css("display", "none");
          return false;

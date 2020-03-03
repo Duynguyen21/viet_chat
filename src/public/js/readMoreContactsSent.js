@@ -7,7 +7,7 @@ $(document).ready(function() {
     
     $.get(`/contact/read-more-contacts-sent?skipNumber=${skipNumber}`, function(newContactUsers){
        if(!newContactUsers.length){
-         alerttify.notify("Bạn không còn danh sách nào để xem", "error", 7);
+         alertify.notify("Bạn không còn danh sách nào để xem", "error", 7);
          $("#link-read-more-contacts-sent").css("display", "inline-block");
          $(".read-more-contacts-sent-loader").css("display", "none");
          return false;         

@@ -1,5 +1,5 @@
 function approveRequestContactReceived () {
-  $(".user-approve-request-contact-sent").unbind("click").on("click", function() {
+  $(".user-approve-request-contact-received").unbind("click").on("click", function() {
     let targetId = $(this).data("uid");
    
       $.ajax({
@@ -7,11 +7,15 @@ function approveRequestContactReceived () {
         type: "put",
         data: {uid: targetId},
         success: function(data){
-          if(data.success){       
+          if(data.success){
+
             let userInfo = $("#request-contact-received").find(`ul li[data-uid = ${targetId}]`);
-              $(userInfo).find("div.user-approve-request-contact-sent").remove();
-              $(userInfo).find("div.user-remove-request-contact-sent").remove();
-              $(userInfo).find("div.contactPanel").append(`
+            
+              $(userInfo).find("div.user-approve-request-contact-received").remove();
+              $(userInfo).find("div.user-remove-request-contact-received").remove();
+              
+              $(userInfo).find("div.contactPanel")
+              .append(`
                 <div class="user-talk" data-uid="${targetId}">
                   Trò chuyện
                 </div>
@@ -19,11 +23,13 @@ function approveRequestContactReceived () {
                   Xóa liên hệ
                 </div>
               `);
+
               let userInfoHtml = userInfo.get(0).outerHTML;
-              $("contact").find("ul").prepend(userInfoHtml);
+              $("#contacts").find("ul").prepend(userInfoHtml);
               $(userInfo).remove();
 
               decreaseNumberNotifContact("count-request-contact-received"); //js/caculateNotifiContact.js
+
               increaseNumberNotifContact("count-contacts"); //js/caculateNotifiContact.js
 
               decreaseNumberNotification("noti_contact_counter", 1);
@@ -36,10 +42,11 @@ function approveRequestContactReceived () {
 };
 
           socket.on("response-approve-request-contact-received", function(user){
-            let notif = `<div data-uid="${user.id}">
+            let notif = `<div class="notif-readed-false" data-uid="${user.id}">
             <img class="avatar-small" src="images/users/${user.avatar}" alt=""> 
             <strong>${user.username}</strong> đã chấp nhận lời mời kết bạn của bạn !
             </div>`;
+            
           $(".noti_content").prepend(notif);//popup notification
           $("ul.list-notifications").prepend(`<li>${notif}</li>`);
 
@@ -49,8 +56,8 @@ function approveRequestContactReceived () {
           decreaseNumberNotifContact("count-request-contact-sent"); //js/caculateNotifiContact.js
           increaseNumberNotifContact("count-contacts"); //js/caculateNotifiContact.js
 
-          $("#request-contact-sent").find(`ul li[dât-uid = ${user.id}]`).remove;
-          $("#find-user").find(`ul li[dât-uid = ${user.id}]`).remove;
+          $("#request-contact-sent").find(`ul li[data-uid = ${user.id}]`).remove;
+          $("#find-user").find(`ul li[data-uid = ${user.id}]`).remove;
 
           let userInfoHtml = `
                 <li class="_contactList" data-uid="${user.id}">

@@ -11,4 +11,3 @@ export const auth = authController;
 export const user = userController;
 export const contact = contactController;
 export const notification = notificationController;
-
