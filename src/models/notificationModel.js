@@ -33,6 +33,7 @@ NotificationSchema.statics = {
   getByUserIdAndLimit(userId, limit){
     return this.find({ "receiverId": userId}).sort({"createdAt": -1}).limit(limit).exec();
   },
+  
   /**
    * 
    * @param {string} userId 

@@ -9,7 +9,7 @@ $(document).ready(function() {
         alerttify.notify("Bạn không còn thông báo nào chưa được đọc", "error", 7);
         $("#link-read-more-notif").css("display", "inline-block");
         $(".read-more-notif-loader").css("display", "none");
-        return false;
+        return false; 
       }
       notifications.forEach(function(notification){
         $("ul.list-notifications").append(`<li>${notification}</li>`); //modal notif
@@ -20,3 +20,4 @@ $(document).ready(function() {
    });
  });
 });
+  

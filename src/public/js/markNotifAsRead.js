@@ -6,8 +6,8 @@ function markNotificationAsRead(targetUsers){
     success: function(result){
       if(result){
         targetUsers.forEach(function(uid){
-          $(".noti_content").find(`div[data-uid =${uid}]`).removeClass("notif-reader-false");
-          $("ul.list_notifications").find(`div[data-uid =${uid}]`).removeClass("notif-reader-false");
+          $(".noti_content").find(`div[data-uid =${uid}]`).removeClass("notif-readed-false");
+          $("ul.list-notifications").find(`li>div[data-uid =${uid}]`).removeClass("notif-readed-false");
         });
         decreaseNumberNotification("noti_counter", targetUsers.length);
       }
@@ -19,7 +19,7 @@ $(document).ready(function() {
   // link at popup notification
   $("#popup-mark-notif-as-read").bind("click", function() {
     let targetUsers = [];
-    $(".noti_content").find("div.notif-reader-false").each(function(index, notification){
+    $(".noti_content").find("div.notif-readed-false").each(function(index, notification){
       targetUsers.push($(notification).data("uid"));
     });
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
   // link at modal notification
   $("#modal-mark-notif-as-read").bind("click", function() {
     let targetUsers = [];
-    $("ul.list_notifications").find("li>div.notif-reader-false").each(function(index, notification){
+    $("ul.list-notifications").find("li>div.notif-readed-false").each(function(index, notification){
       targetUsers.push($(notification).data("uid"));
     });
     if(!targetUsers.length){
