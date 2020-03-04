@@ -12,7 +12,7 @@ function nineScrollLeft() {
     cursorwidth: '7px',
     scrollspeed: 50
   });
-}
+};
 
 function nineScrollRight() {
   $('.right .chat').niceScroll({
@@ -23,7 +23,7 @@ function nineScrollRight() {
     scrollspeed: 50
   });
   $('.right .chat').scrollTop($('.right .chat')[0].scrollHeight);
-}
+};
 
 function enableEmojioneArea(chatId) {
   $('.write-chat[data-chat="' + chatId + '"]').emojioneArea({
@@ -47,15 +47,15 @@ function enableEmojioneArea(chatId) {
     $('.emojionearea-button').click();
     $('.emojionearea-editor').focus();
   });
-}
+};
 
 function spinLoaded() {
   $('.master-loader').css('display', 'none');
-}
+};
 
 function spinLoading() {
   $('.master-loader').css('display', 'block');
-}
+};
 
 function ajaxLoading() {
   $(document)
@@ -65,13 +65,13 @@ function ajaxLoading() {
     .ajaxStop(function() {
       spinLoaded();
     });
-}
+};
 
 function showModalContacts() {
   $('#show-modal-contacts').click(function() {
     $(this).find('.noti_contact_counter').fadeOut('slow');
   });
-}
+};
 
 function configNotification() {
   $('#noti_Button').click(function() {
@@ -82,7 +82,7 @@ function configNotification() {
   $(".main-content").click(function() {
     $('#notifications').fadeOut('fast', 'linear');
   });
-}
+};
 
 function gridPhotos(layoutNumber) {
   let countRows = Math.ceil($('#imagesModal').find('div.all-images>img').length / layoutNumber);
@@ -104,18 +104,7 @@ function gridPhotos(layoutNumber) {
       });
     }
   });
-}
-
-function showButtonGroupChat() {
-  $('#select-type-chat').bind('change', function() {
-    if ($(this).val() === 'group-chat') {
-      $('.create-group-chat').show();
-      // Do something...
-    } else {
-      $('.create-group-chat').hide();
-    }
-  });
-}
+};
 
 function addFriendsToGroup() {
   $('ul#group-chat-friends').find('div.add-user').bind('click', function() {
@@ -132,7 +121,7 @@ function addFriendsToGroup() {
       $('ul#group-chat-friends').find('div[data-uid=' + uid + ']').remove();
     });
   });
-}
+};
 
 function cancelCreateGroup() {
   $('#cancel-group-chat').bind('click', function() {
@@ -143,14 +132,27 @@ function cancelCreateGroup() {
       });
     }
   });
-}
+};
 
 function flashMasterNotify() {
   let notify = $(".master-success-message").text();
   if(notify.length){
     alertify.notify(notify, "success", 7);
   }
-}
+};
+
+function changeTypeChat() {
+  $("#select-type-chat").bind("change", function() {
+    let optionSelected = $("option:selected", this);
+    optionSelected.tab("show");
+    
+    if($(this).val() =="user-chat"){
+      $(".create-group-chat").hide();
+    }else {
+      $(".create-group-chat").show();
+    }
+  });
+};
 
 $(document).ready(function() {
   // Hide số thông báo trên đầu icon mở modal contact
@@ -169,9 +171,6 @@ $(document).ready(function() {
   // Icon loading khi chạy ajax
   ajaxLoading();
 
-  // Hiển thị button mở modal tạo nhóm trò chuyện
-  showButtonGroupChat();
-
   // Hiển thị hình ảnh grid slide trong modal tất cả ảnh, tham số truyền vào là số ảnh được hiển thị trên 1 hàng.
   // Tham số chỉ được phép trong khoảng từ 1 đến 5
   gridPhotos(5);
@@ -184,4 +183,7 @@ $(document).ready(function() {
 
   //Flash message ở màn hình master
   flashMasterNotify();
+
+  //thay đổi kiểu trò chuyện
+  changeTypeChat();
 });
