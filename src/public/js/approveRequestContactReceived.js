@@ -1,7 +1,6 @@
 function approveRequestContactReceived () {
   $(".user-approve-request-contact-received").unbind("click").on("click", function() {
-    let targetId = $(this).data("uid");
-   
+    let targetId = $(this).data("uid");  
       $.ajax({
         url: "/contact/approve-request-contact-received",
         type: "put",
@@ -25,7 +24,7 @@ function approveRequestContactReceived () {
               `);
 
               let userInfoHtml = userInfo.get(0).outerHTML;
-              $("#contacts").find("ul").prepend(userInfoHtml);
+              $("contacts").find("ul").prepend(userInfoHtml);
               $(userInfo).remove();
 
               decreaseNumberNotifContact("count-request-contact-received"); //js/caculateNotifiContact.js
@@ -86,6 +85,7 @@ function approveRequestContactReceived () {
             </li>`;
             $("#contacts").find("ul").prepend(userInfoHtml);
             removeContact();
+            $(userInfo).remove();
           });
 
 $(document).ready(function(){

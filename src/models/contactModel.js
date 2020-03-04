@@ -106,7 +106,10 @@ approveRequestContactReceived(userId, contactId){
       {"userId": contactId},
       {"status": false}
     ]
-  },{"status": true}).exec();
+  },
+  {"status": true},
+  {"updatedAt": Date.now()}
+  ).exec();
 },
 
 
@@ -124,7 +127,7 @@ approveRequestContactReceived(userId, contactId){
         ]},
         {"status": true}
       ]
-    }).sort({"createdAt": -1 }).limit(limit).exec();
+    }).sort({"updatedAt": -1 }).limit(limit).exec();
   },
 
   /**
@@ -212,7 +215,7 @@ approveRequestContactReceived(userId, contactId){
         ]},
         {"status": true}
       ]
-    }).sort({"createdAt": -1 }).skip(skip).limit(limit).exec();
+    }).sort({"updatedAt": -1 }).skip(skip).limit(limit).exec();
   },
 
   /**
