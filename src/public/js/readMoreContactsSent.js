@@ -38,12 +38,12 @@ $(document).ready(function() {
  
          $("#link-read-more-contacts-sent").css("display", "inline-block");
          $(".read-more-contacts-sent-loader").css("display", "none");
+      });
+
+      removeRequestContactSent(); // js/removeRequestContactSent.js
+
+      $("#link-read-more-contacts-sent").css("display", "inline-block");
+      $(".read-more-contacts-sent-loader").css("display", "none");
     });
-
-    removeRequestContactSent(); // js/removeRequestContactSent.js
-
-    $("#link-read-more-contacts-sent").css("display", "inline-block");
-    $(".read-more-contacts-sent-loader").css("display", "none");
   });
- });
 });

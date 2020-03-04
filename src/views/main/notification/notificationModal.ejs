@@ -6,28 +6,28 @@
               <h4 class="modal-title">Tất cả thông báo.</h4>
           </div>
           <div class="modal-body">
-              <div class="mark-notif-as-read">
-                  <a href="javascripts:void(0)" id="modal-mark-notif-as-read">
-                      <strong>Đánh dấu tất cả là đã đọc.</strong>
-                  </a>
-              </div>
+                <div class="mark-notif-as-read">
+                    <a href="javascript:void(0)" id="modal-mark-notif-as-read">
+                        <strong>Đánh dấu tất cả là đã đọc.</strong>
+                    </a>
+                </div>
               <hr>
-              <ul class="list-notifications">
-                <% notifications.forEach(function (notification){ %>
-                    <li>
-                        <%- notification %>
-                    </li>
-                 <% }); %>               
-              </ul>
+                <ul class="list-notifications">
+                    <% notifications.forEach(function(notification){ %>
+                        <li>
+                            <%- notification %>
+                        </li>
+                    <% }); %>               
+                </ul>
               <hr>
-              <div class="read-more-notif" >
-                  <a href="javascript:void(0)" id="link-read-more-notif">
-                    <strong>Xem thêm thông báo</strong>
-                  </a>
-                  <div class="read-more-notif-loader"><div></div><div></div></div>
-              </div>
-              <hr>
-          </div>
-      </div>
-  </div>
+                    <div class="read-more-notif" >
+                        <a href="javascript:void(0)" id="link-read-more-notif">
+                            <strong>Xem thêm thông báo</strong>
+                        </a>
+                        <div class="read-more-notif-loader"><div></div><div></div></div>
+                    </div>
+                <hr>
+            </div>
+        </div>
+    </div>
 </div>
