@@ -1,4 +1,4 @@
-function markNotificationAsRead(targetUsers){
+function markNotificationsAsRead(targetUsers){
   $.ajax({
     url: "/notification/mark-all-as-read",
     type: "put",
@@ -6,13 +6,13 @@ function markNotificationAsRead(targetUsers){
     success: function(result){
       if(result){
         targetUsers.forEach(function(uid){
-          $(".noti_content").find(`div[data-uid =${uid}]`).removeClass("notif-readed-false");
-          $("ul.list-notifications").find(`li>div[data-uid =${uid}]`).removeClass("notif-readed-false");
+          $(".noti_content").find(`div[data-uid = ${uid}]`).removeClass("notif-readed-false");
+          $("ul.list-notifications").find(`li>div[data-uid = ${uid}]`).removeClass(".notif-readed-false");
         });
-        decreaseNumberNotification("noti_counter", targetUsers.length);
+           decreaseNumberNotification("noti_counter", targetUsers.length);
       }
     }
-  })
+  });
 };
 
 $(document).ready(function() {
@@ -27,19 +27,18 @@ $(document).ready(function() {
       alertify.notify("Bạn không còn thông báo nào chưa được đọc", "error", 7);
       return false;
     };
-
-    markNotificationAsRead(targetUsers);
+    markNotificationsAsRead(targetUsers);
   });
   // link at modal notification
   $("#modal-mark-notif-as-read").bind("click", function() {
     let targetUsers = [];
-    $("ul.list-notifications").find("li>div.notif-readed-false").each(function(index, notification){
+    $("ul.list-notifications").find("li>div.notif-readed-false").each(function (index, notification){
       targetUsers.push($(notification).data("uid"));
     });
     if(!targetUsers.length){
       alertify.notify("Bạn không còn thông báo nào chưa được đọc", "error", 7);
       return false;
     };
-    markNotificationAsRead(targetUsers);
+    markNotificationsAsRead(targetUsers);
   });
 });

@@ -37,10 +37,11 @@ $(document).ready(function() {
                 </div>
               </div>
              </li> `);
- 
-         $("#link-read-more-contacts").css("display", "inline-block");
-         $(".read-more-contacts-loader").css("display", "none");
+      });
+
+            removeContact();
+            $("#link-read-more-contacts").css("display", "inline-block");
+            $(".read-more-contacts-loader").css("display", "none");
     });
   });
- });
 });

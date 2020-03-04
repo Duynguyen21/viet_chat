@@ -1,11 +1,10 @@
 import express from "express";
-import { home, auth, user, contact } from "./../controllers/index";
+import { home, auth, user, contact, notification } from "./../controllers/index";
 import { authValid, userValid, contactValid } from "./../validation/index";
 import passport from "passport";
 import initPassportLocal from "./../controllers/passportController/local";
 import initPassportFacebook from "./../controllers/passportController/facebook";
 import initPassportGoogle from "./../controllers/passportController/google";
-import { notification } from "../services";
 
 
 // Init all pasport
@@ -54,13 +53,30 @@ let initRouters = (app) => {
 
   router.put("/user/update-avatar", auth.checkLoggedIn, user.updateAvatar);
   router.put("/user/update-info", auth.checkLoggedIn, userValid.updateInfo, user.updateInfo );
-  router.put("/user/update-password", auth.checkLoggedIn, userValid.updatePassword, user.updatePassword);
+  router.put("/user/update-password", 
+  auth.checkLoggedIn, 
+  userValid.updatePassword,
+  user.updatePassword);
 
-  router.get("/contact/find-users/:keyword", auth.checkLoggedIn,contactValid.findUsersContact, contact.findUsersContact);
+  router.get("/contact/find-users/:keyword", 
+  auth.checkLoggedIn,
+  contactValid.findUsersContact,
+  contact.findUsersContact);
+
   router.post("/contact/add-new", auth.checkLoggedIn, contact.addNew);
-  router.delete("/contact/remove-request-contact-sent", auth.checkLoggedIn, contact.removeRequestContactSent);
-  router.delete("/contact/remove-request-contact-received", auth.checkLoggedIn, contact.removeRequestContactReceived);
-  router.put("/contact/approve-request-contact-received", auth.checkLoggedIn, contact.approveRequestContactReceived);
+  router.delete("/contact/remove-contact", auth.checkLoggedIn, contact.removeContact);
+  router.delete("/contact/remove-request-contact-sent",
+  auth.checkLoggedIn, 
+  contact.removeRequestContactSent);
+
+  router.delete("/contact/remove-request-contact-received", 
+  auth.checkLoggedIn, 
+  contact.removeRequestContactReceived);
+
+  router.put("/contact/approve-request-contact-received", 
+  auth.checkLoggedIn, 
+  contact.approveRequestContactReceived);
+  
   router.get("/contact/read-more-contacts", auth.checkLoggedIn, contact.readMoreContacts);
   router.get("/contact/read-more-contacts-sent", auth.checkLoggedIn, contact.readMoreContactsSent);
   router.get("/contact/read-more-contacts-received", auth.checkLoggedIn, contact.readMoreContactsReceived);
