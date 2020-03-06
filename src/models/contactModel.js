@@ -246,8 +246,29 @@ approveRequestContactReceived(userId, contactId){
         {"status": false}
       ]
     }).sort({"createdAt": -1 }).skip(skip).limit(limit).exec();
-
   },
+
+    /**
+    * Update new message in user chat 
+    * @param {strin} id 
+    * @param {number} newMessageAmount 
+    */
+   updateWhenHasNewMessage(userId, contactId){
+      return this.update({
+        $or:  [
+          {$and: [
+            {"userId": userId},
+            {"contactId": contactId},
+          ]},
+          {$and: [
+            {"userId": contactId},
+            {"contactId": userId},
+          ]},
+        ]},
+        {
+          "updatedAt": Date.now()
+        }).exec();
+  }
 };
 
 module.exports = mongoose.model("contact", ContactSchema);

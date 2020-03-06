@@ -49,6 +49,10 @@ MessageSchema.statics = {
       "receiverId": receiverId
     }).sort({"createdAt": 1}).limit(limit).exec();
   },
+  
+  createNew(item){
+    return this.create(item);
+  },
 };
 
 const MESSAGE_CONVERSATION_TYPES = {
