@@ -2,7 +2,7 @@ function textAndEmojiChat (divId){
   $(".emojionearea").unbind("keyup").on("keyup", function(element){
     if(element.which === 13){
         let targetId = $(`#write-chat-${divId}`).data("chat");
-        let messageVal = $(`# write-chat-${divId}`).val();
+        let messageVal = $(`#write-chat-${divId}`).val();
 
         if(!targetId.length || !messageVal.length){
           return false;
@@ -19,8 +19,10 @@ function textAndEmojiChat (divId){
 
         $.post("/message/add-new-text-emoji", dataTextEmojiForSend, function(data){
             //success
+            console.log(data.message);
         }).fail(function(response){
             //error
+            alertify.notify(response.responseText, "error", 7);
         });
     };
   });
