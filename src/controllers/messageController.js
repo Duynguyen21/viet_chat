@@ -23,8 +23,7 @@ let addNewTextEmoji = async (req, res)=> {
     let messageVal = req.body.messageVal;
     let isChatGroup = req.body.isChatGroup;
 
-    let newMessage = await message.addNewTextEmoji(sender, receiverId, messageVal, isChatGroup);
-    
+    let newMessage = await message.addNewTextEmoji(sender, receiverId, messageVal, isChatGroup);    
       return res.status(200).send({message: newMessage});
   } catch (error) {
     return res.status(500).send(error);

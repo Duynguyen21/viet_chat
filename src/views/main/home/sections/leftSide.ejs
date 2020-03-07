@@ -32,7 +32,7 @@
                                 <span class="time">
                                     <%= convertTimestampToHumanTime(lastItemOfArray(conversation.messages).createdAt) %>
                                 </span>
-                                <span class="preview">
+                                <span class="preview convert-emoji">
                                     <% if (lastItemOfArray(conversation.messages).messageType === "text") { %>
                                         <%=  lastItemOfArray(conversation.messages).text   %>
                                     <% } %>
@@ -62,7 +62,7 @@
                                     <span class="time">
                                         <%= convertTimestampToHumanTime(lastItemOfArray(conversation.messages).createdAt) %>
                                     </span>
-                                    <span class="preview">
+                                    <span class="preview convert-emoji">
                                         <% if (lastItemOfArray(conversation.messages).messageType === "text") { %>
                                             <%=  lastItemOfArray(conversation.messages).text   %>
                                         <% } %>
@@ -91,35 +91,35 @@
                 <ul class="people no-padding-start">
                     <% allConversationWithMessages.forEach(function(conversation) { %>
                         <% if(!conversation.members) { %>
-                        <a href="#uid_<%= conversation._id %>" class="room-chat" data-target="#to_<%= conversation._id %>">
-                            <li class="person" data-chat="<%= conversation.id %>">
-                                <div class="left-avatar">
-                                    <div class="dot"></div>
-                                    <img src="images/users/<%= conversation.avatar %>" alt="">
-                                </div>
-                                <span class="name">
-                                    <% if(conversation.username.length > 25 ) { %>
-                                        <%= conversation.username.substr(0,20) %><span>....</span>
-                                    <% } else { %>
-                                        <%= conversation.username %>
-                                    <% } %>
-                                </span>
-                                <span class="time">
-                                    <%= convertTimestampToHumanTime(lastItemOfArray(conversation.messages).createdAt) %>
-                                </span>
-                                <span class="preview">
-                                    <% if (lastItemOfArray(conversation.messages).messageType === "text") { %>
-                                        <%=  lastItemOfArray(conversation.messages).text   %>
-                                    <% } %>
-                                    <% if (lastItemOfArray(conversation.messages).messageType === "image") { %>
-                                        Hình ảnh ...
-                                    <% } %>
-                                    <% if (lastItemOfArray(conversation.messages).messageType === "file") { %>
-                                        File ...
-                                    <% } %>
-                                </span>
-                            </li>
-                        </a>
+                            <a href="#uid_<%= conversation._id %>" class="room-chat" data-target="#to_<%= conversation._id %>">
+                                <li class="person" data-chat="<%= conversation._id %>">
+                                    <div class="left-avatar">
+                                        <div class="dot"></div>
+                                        <img src="images/users/<%= conversation.avatar %>" alt="">
+                                    </div>
+                                    <span class="name">
+                                        <% if(conversation.username.length > 25 ) { %>
+                                            <%= conversation.username.substr(0,20) %><span>....</span>
+                                        <% } else { %>
+                                            <%= conversation.username %>
+                                        <% } %>
+                                    </span>
+                                    <span class="time">
+                                        <%= convertTimestampToHumanTime(lastItemOfArray(conversation.messages).createdAt) %>
+                                    </span>
+                                    <span class="preview convert-emoji">
+                                        <% if (lastItemOfArray(conversation.messages).messageType === "text") { %>
+                                            <%=  lastItemOfArray(conversation.messages).text   %>
+                                        <% } %>
+                                        <% if (lastItemOfArray(conversation.messages).messageType === "image") { %>
+                                            Hình ảnh ...
+                                        <% } %>
+                                        <% if (lastItemOfArray(conversation.messages).messageType === "file") { %>
+                                            File ...
+                                        <% } %>
+                                    </span>
+                                </li>
+                            </a>
                         <% } %>
                     <% }); %>
                 </ul>
@@ -154,7 +154,7 @@
                                 <span class="time">
                                     <%= convertTimestampToHumanTime(lastItemOfArray(conversation.messages).createdAt) %>
                                 </span>
-                                <span class="preview">
+                                <span class="preview convert-emoji">
                                     <% if (lastItemOfArray(conversation.messages).messageType === "text") { %>
                                         <%=  lastItemOfArray(conversation.messages).text   %>
                                     <% } %>
