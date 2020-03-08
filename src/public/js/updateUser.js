@@ -60,8 +60,10 @@ function updateUserInfo() {
       }
       imagePreview.show();
       fileReader.readAsDataURL(fileData);
+
       let formData = new FormData();
       formData.append("avatar", fileData);
+
       userAvatar = formData;
     } else {
       alertify.notify("Trình duyệt của bạn không hỗ trợ FileReader", "error", 7)
@@ -187,7 +189,6 @@ function callUpdateAvatar() {
     processData: false,
     data: userAvatar,
     success: function(result){
-      console.log(result);
       //Displat success
       $(" .user-modal-alert-success " ).find("span").text(result.message);
       $(" .user-modal-alert-success " ).css("display", "block");
@@ -203,7 +204,6 @@ function callUpdateAvatar() {
 
     },
     error: function(error){
-      console.log(error);
       $(" .user-modal-alert-error " ).find("span").text(error.responseText);
       $(" .user-modal-alert-error " ).css("display", "block");
       //reset all
@@ -232,7 +232,6 @@ function callUpdateUserInfo() {
       $("#input-btn-cancel-update-user").click();
     },
     error: function(error){
-      console.log(error);
       $(" .user-modal-alert-error " ).find("span").text(error.responseText);
       $(" .user-modal-alert-error " ).css("display", "block");
       //reset all
@@ -260,7 +259,6 @@ function callUpdateUserPassword() {
       callLogout();
     },
     error: function(error){
-      console.log(error);
       $(" .user-modal-password-alert-error " ).find("span").text(error.responseText);
       $(" .user-modal-password-alert-error " ).css("display", "block");
       //reset all
