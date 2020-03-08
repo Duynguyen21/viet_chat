@@ -46,7 +46,7 @@
                         <div class="chat" data-chat="<%= conversation._id %>">
                             <% conversation.messages.forEach(function(message){ %>
                                 <% if(message.messageType === "text") { %>
-                                    <div class="convert-emoji bubble <% if(message.senderId === user._id) { %> 
+                                    <div class="convert-emoji bubble <% if(message.senderId == user._id) { %> 
                                                 me <% }else { %> you <% } %>" 
                                                 data-mess-id="<%= message._id %>">
                                         <img src="/images/users/<%= message.sender.avatar %>" class="avatar-small" title="<%= message.sender.name %>">
@@ -55,7 +55,7 @@
                                 <% } %>
 
                                 <% if(message.messageType === "image") { %>
-                                    <div class="bubble <% if(message.senderId === user._id) { %> 
+                                    <div class="bubble <% if(message.senderId == user._id) { %> 
                                         me <% }else { %> you <% } %> bubble-image-file"  
                                         data-mess-id="<%= message._id %>">
                                         <img src="/images/users/<%= message.sender.avatar %>" class="avatar-small" title="<%= message.sender.name%>">
@@ -65,7 +65,7 @@
                                 <% } %>
 
                                 <% if(message.messageType === "file") { %>
-                                    <div class="bubble<% if(message.senderId === user._id) { %> 
+                                    <div class="bubble<% if(message.senderId == user._id) { %> 
                                         me <% }else { %> you <% } %> bubble-image-file" data-mess-id="<%= message._id %>">
                                     <img src="/images/users/<%= message.sender.avatar %>" class="avatar-small" title="<%= message.sender.name%>">
                                         <a href="data:<%= message.file.contentType %>; base64, <%= bufferToBase64(message.file.data) %>" 
@@ -132,7 +132,7 @@
                         <div class="chat" data-chat="<%= conversation._id %>">
                             <% conversation.messages.forEach(function(message){ %>
                                 <% if(message.messageType === "text") { %>
-                                    <div class=".convert-emoji bubble<% if(message.senderId === user._id) { %> 
+                                    <div class=".convert-emoji bubble<% if(message.senderId == user._id) { %> 
                                                 me <% }else { %> you <% } %>" 
                                                 data-mess-id="<%= message._id %>">
                                                 <%= message.text %>
@@ -140,7 +140,7 @@
                                 <% } %>
 
                                 <% if(message.messageType === "image") { %>
-                                    <div class="bubble<% if(message.senderId === user._id) { %> 
+                                    <div class="bubble<% if(message.senderId == user._id) { %> 
                                         me <% }else { %> you <% } %> bubble-image-file"  
                                         data-mess-id="<%= message._id%>">
 
@@ -150,7 +150,7 @@
                                 <% } %>
 
                                 <% if(message.messageType === "file") { %>
-                                    <div class="bubble<% if(message.senderId === user._id) { %> 
+                                    <div class="bubble<% if(message.senderId == user._id) { %> 
                                         me <% } else { %> you <% } %> bubble-image-file" data-mess-id="<%= message._id %>">
 
                                         <a href="data:<%= message.file.contentType %>; base64, <%= bufferToBase64(message.file.data) %>" 
