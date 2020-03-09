@@ -140,9 +140,8 @@
                                 <% } %>
 
                                 <% if(message.messageType === "image") { %>
-                                    <div class="bubble<% if(message.senderId == user._id) { %> 
-                                        me <% }else { %> you <% } %> bubble-image-file"  
-                                        data-mess-id="<%= message._id%>">
+                                    <div class="bubble<% if(message.senderId == user._id) { %> me <% }else { %> you <% } %> bubble-image-file"  
+                                        data-mess-id="<%= message._id %>">
 
                                         <img src="data:<%= message.file.contentType %>; base64, <%= bufferToBase64(message.file.data) %>" 
                                         class="show-image-chat">
@@ -167,7 +166,7 @@
                         <div class="icons">
                             <a href="#" class="icon-chat" data-chat="<%= conversation._id %>"><i class="fa fa-smile-o"></i></a>
                             <label for="image-chat-<%= conversation._id%>">
-                                <input type="file" id="image-chat-<%= conversation._id%>" name="my-image-chat" class="image-chat" data-chat="<%= conversation._id %>">
+                                <input type="file" id="image-chat-<%= conversation._id %>" name="my-image-chat" class="image-chat" data-chat="<%= conversation._id %>">
                                 <i class="fa fa-photo"></i>
                             </label>
                             <label for="attach-chat">

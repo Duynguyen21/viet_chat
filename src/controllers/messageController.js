@@ -41,7 +41,7 @@ let storageImageChat = multer.diskStorage({
   filename: (req, file, callback) => {
     let math = app.image_message_type;
       if(math.indexOf(file.mimetype) === -1) {
-        return callback(transErrors.image_message_type, null);
+        return callback(transErrors.image_message_type);
       }
 
     let imageName = `${file.originalname}`;
@@ -55,12 +55,12 @@ let imageMessageUploadFile = multer({
 }).single("my-image-chat");
 
 let addNewImage = async (req, res)=> {
-  imageMessageUploadFile(req, res , async (error) => {
+  imageMessageUploadFile(req, res , async(error) => {
     if(error){
       if(error.message){
         return res.status(500).send(transErrors.image_message_size);
       }
-      return res.status(500).send(error);
+      return res.status(500).send(transError.avatar_type);;
     }
     try {
       let sender = {
