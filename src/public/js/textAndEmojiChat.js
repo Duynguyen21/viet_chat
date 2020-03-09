@@ -53,7 +53,7 @@ function textAndEmojiChat (divId){
 
             //step 4:  change data preview left side
             $(`.person[data-chat = ${divId}]`).find("span.time").removeClass("message-time-realtime").html( moment(data.message.createdAt).locale("vi").startOf("seconds").fromNow());
-            $(`.person[data-chat = ${divId}]`).find("span.priview").html(emojione.toImage(data.message.text)); 
+            $(`.person[data-chat = ${divId}]`).find("span.preview").html(emojione.toImage(data.message.text)); 
 
             //step 5:  move conversation to the top
             $(`.person[data-chat = ${divId}]`).on("ckick.moveConversationToTheTop", function() {
@@ -120,7 +120,7 @@ $(document).ready(function(){
 
       //step 4:  change data preview left side
       $(`.person[data-chat = ${divId}]`).find("span.time").html(moment(response.message.createdAt).locale("vi").startOf("seconds").fromNow());
-      $(`.person[data-chat = ${divId}]`).find("span.priview").html(emojione.toImage(response.message.text)); 
+      $(`.person[data-chat = ${divId}]`).find("span.preview").html(emojione.toImage(response.message.text)); 
 
       //step 5:  move conversation to the top . ckick set for me
       $(`.person[data-chat = ${divId}]`).on("ckick.moveConversationToTheTop", function() {

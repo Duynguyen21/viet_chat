@@ -99,25 +99,33 @@ function configNotification() {
 function gridPhotos(layoutNumber) {
   $(".show-images").unbind("click").on("click", function(){
     let href = $(this).attr("href");
-    let modalImageId = href.replace("#", "");
-    let countRows = Math.ceil($(`${modalImageId}`).find("div.all-images>img").length / layoutNumber);
+    let modalImagesId = href.replace("#", "");
+
+    let originalDataImage = $(`#${modalImagesId}`).find("div.modal-body").html();
+
+    let countRows = Math.ceil($(`#${modalImagesId}`).find("div.all-images>img").length / layoutNumber);
     let layoutStr = new Array(countRows).fill(layoutNumber).join("");
-    $(`${modalImageId}`).find("div.all-images").photosetGrid({
+
+    $(`#${modalImagesId}`).find("div.all-images").photosetGrid({
       highresLinks: true,
       rel: "withhearts-gallery",
       gutter: "2px",
       layout: layoutStr,
       onComplete: function() {
-        $(`${modalImageId}`).find(".all-images").css({
+        $(`#${modalImagesId}`).find(".all-images").css({
           "visibility": "visible"
         });
-        $(`${modalImageId}`).find(".all-images a").colorbox({
+        $(`#${modalImagesId}`).find(".all-images a").colorbox({
           photo: true,
           scalePhotos: true,
           maxHeight: "90%",
           maxWidth: "90%"
         }); 
       }
+    });
+
+    $(`#${modalImagesId}`).on('hidden.bs.modal', function () {
+      $(this).find("div.modal-body").html(originalDataImage);
     });
   });
 };

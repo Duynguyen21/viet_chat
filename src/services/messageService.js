@@ -159,7 +159,6 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
           avatar: app.general_avatar_group_chat
         };
 
-
         let imageBuffer = await fsExtra.readFile(messageVal.path);
         let imageContentType = messageVal.mimetype;
         let imageName = messageVal.originalname;
@@ -180,7 +179,7 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
         await ChatGroupModel.updateWhenHasNewMessage(getChatGroupReceiver._id, getChatGroupReceiver.messageAmount + 1 );
         resolve(newMessage);
 
-      }else {
+      }else{
 
         let getUserReceiver = await UserModel.getNormalUserDataById(receiverId);
         if(!getUserReceiver){
@@ -191,7 +190,11 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
           name: getUserReceiver.name,
           avatar: getUserReceiver.avatar
         };
-        
+
+        let imageBuffer = await fsExtra.readFile(messageVal.path);
+        let imageContentType = messageVal.mimetype;
+        let imageName = messageVal.originalname;
+
         let newMessageItem = {
           senderId: sender.id,
           receiverId: receiver.id,
@@ -208,7 +211,7 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
         await ContactModel.updateWhenHasNewMessage(sender.id, getUserReceiver._id);
         resolve(newMessage);
       }
-      
+
     } catch (error) {
       reject(error);
     }
@@ -219,5 +222,5 @@ let addNewImage = (sender, receiverId, messageVal, isChatGroup) => {
 module.exports = {
   getAllConversationItems: getAllConversationItems,
   addNewTextEmoji: addNewTextEmoji,
-  addNewImage: addNewImage
+  addNewImage: addNewImage,
 };
