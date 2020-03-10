@@ -101,8 +101,6 @@ function imageChat(divId) {
  });
 };
 
-
-
 $(document).ready(function(){
   socket.on("response-chat-image", function(response){
     let divId = "";
@@ -123,40 +121,35 @@ $(document).ready(function(){
 
         if(response.currentUserId !== $("#dropdown-navbar-user").data("uid")){
         increaseNumberMessageGroup(divId);
-      };     
+      };           
+    }else {             
+      messageOfYou.html(imageChat);
+      divId = response.currentUserId;
+    };
+      //step 2: append  message data to screen
+      if(response.currentUserId !== $("#dropdown-navbar-user").data("uid")){
+        $(`.right .chat[data-chat = ${divId}]`).append(messageOfYou);
+        nineScrollRight(divId);
+        $(`.person[data-chat = ${divId}]`).find("span.time").addClass("message-time-realtime");
+      };
 
-        //step 2: append  message data to screen
-        if(response.currentUserId !== $("#dropdown-navbar-user").data("uid")){
-          $(`.right .chat[data-chat = ${divId}]`).append(messageOfYou);
-          nineScrollRight(divId);
-          $(`.person[data-chat = ${divId}]`).find("span.time").addClass("message-time-realtime");
-        };
-
-         //step 4:  change data preview left side
+      //step 4:  change data preview left side
       $(`.person[data-chat = ${divId}]`).find("span.time").html(moment(response.message.createdAt).locale("vi").startOf("seconds").fromNow());
       $(`.person[data-chat = ${divId}]`).find("span.preview").html("Hình ảnh ..."); 
 
-        //step 5:  move conversation to the top . ckick set for me
-        $(`.person[data-chat = ${divId}]`).on("ckick.moveConversationToTheTop", function() {
-          let dataToMove = $(this).parent();
-          $(this).closest("ul").prepend(dataToMove);
-          $(this).off("ckick.moveConversationToTheTop")
-        });
-        $(`.person[data-chat=${divId}]`).trigger("ckick.moveConversationToTheTop");
+      //step 5:  move conversation to the top . ckick set for me
+      $(`.person[data-chat = ${divId}]`).on("ckick.moveConversationToTheTop", function() {
+        let dataToMove = $(this).parent();
+        $(this).closest("ul").prepend(dataToMove);
+        $(this).off("ckick.moveConversationToTheTop")
+      });
+      $(`.person[data-chat=${divId}]`).trigger("ckick.moveConversationToTheTop");
 
+       //step 9:  Add message image to modal image
 
-
-          //step 9:  Add message image to modal image
-
-          if(response.currentUserId !== $("#dropdown-navbar-user").data("uid")){
-            let imageChatToAddModal = `<img src="data:${response.message.file.contentType}; base64, ${bufferToBase64(response.message.file.data.data)}">`;        
-            $(`#imagesModal_${divId}`).find("div.all-images").append(imageChatToAddModal);
-          };    
-         
-    }else {             
-      messageOfYou.html(imageChat);
-      dataToEmit.contactId = targetId;
-    };
-
+       if(response.currentUserId !== $("#dropdown-navbar-user").data("uid")){
+        let imageChatToAddModal = `<img src="data:${response.message.file.contentType}; base64, ${bufferToBase64(response.message.file.data.data)}">`;        
+        $(`#imagesModal_${divId}`).find("div.all-images").append(imageChatToAddModal);
+      }; 
   });
 }); 

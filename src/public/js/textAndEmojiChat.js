@@ -129,9 +129,6 @@ $(document).ready(function(){
         $(this).off("ckick.moveConversationToTheTop")
       });
       $(`.person[data-chat=${divId}]`).trigger("ckick.moveConversationToTheTop");
-
-
-
       //step 6 : Emit realtime nothing to code
   });  
 });
