@@ -89,6 +89,6 @@ server.listen(process.env.APP_PORT, process.env.APP_HOST, () =>{
     
 //     https.createServer({ key: keys.serviceKey, cert: keys.certificate }, app).listen(process.env.APP_PORT, process.env.APP_HOST, () =>{
 //         console.log(`Hello Duy Nguyen,Im running at: ${process.env.APP_HOST}:${process.env.APP_PORT}/`);
-//     });
-    
-//   });
+//     }); 
+
+//   })

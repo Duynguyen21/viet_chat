@@ -8,6 +8,7 @@ import chatImage from "./chat/chatImage";
 import chatAttachment from "./chat/chatAttachment";
 import typingOn from "./chat/typingOn";
 import typingOff from "./chat/typingOff";
+import userOnlineOffline from "./status/userOnlineOffline";
 
 
 /**
@@ -24,6 +25,7 @@ let initSockets = (io) => {
   chatAttachment(io);
   typingOn(io);
   typingOff(io);
+  userOnlineOffline(io)
 
 };
 
