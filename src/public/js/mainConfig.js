@@ -245,6 +245,8 @@ $(document).ready(function() {
   //convert unicode thành các hình ảnh cảm xúc
   convertEmoji();
 
-  $("ul.people").find("a")[0].click();
+  if($("ul.people").find("a").length){
+    $("ul.people").find("a")[0].click();
+  };
 
 });
