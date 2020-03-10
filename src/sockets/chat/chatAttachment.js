@@ -3,7 +3,7 @@ import {pushSocketIdToArray, emitNotifyToArray, removeSocketIdFromArray} from ".
 /**
  * @param {io} from socket.io lib
  */
-let chatTextEmoji = (io) => {
+let chatAttachment = (io) => {
   let clients ={};
 
   io.on("connection",(socket) => {
@@ -12,7 +12,7 @@ let chatTextEmoji = (io) => {
       clients =  pushSocketIdToArray(clients, group._id, socket.id);
     });
     
-    socket.on("chat-text-emoji", (data) => {
+    socket.on("chat-attachment", (data) => {
         if(data.groupId){
           let response = {
             currentGroupId: data.groupId,
@@ -20,7 +20,7 @@ let chatTextEmoji = (io) => {
             message: data.message,
           }
           if(clients[data.contactId]){
-            emitNotifyToArray(clients, data.contactId, io, "response-chat-text-emoji", response);
+            emitNotifyToArray(clients, data.contactId, io, "response-chat-attachment", response);
           }
         }
         if(data.contactId){
@@ -29,9 +29,9 @@ let chatTextEmoji = (io) => {
             message: data.message,
           }
           if(clients[data.contactId]){
-            emitNotifyToArray(clients, data.contactId, io, "response-chat-text-emoji", response);
-          }
-        }
+            emitNotifyToArray(clients, data.contactId, io, "response-chat-attachment", response);
+          };
+        };  
     });
 
     socket.on("disconnect", () => {
@@ -43,4 +43,4 @@ let chatTextEmoji = (io) => {
   });
 };
 
-module.exports = chatTextEmoji;
+module.exports = chatAttachment;

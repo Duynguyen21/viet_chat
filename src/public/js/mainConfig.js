@@ -195,6 +195,9 @@ function changeScreenChat() {
     //bật lắng nghe cho việc chat hình ảnh
     imageChat(divId);
 
+    //bật lắng nghe cho việc gởi file
+    attachmentChat(divId);
+
   });
 };
 

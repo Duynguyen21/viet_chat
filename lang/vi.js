@@ -25,6 +25,7 @@ export const transErrors = {
   conversation_not_found: "cuộc trò chuyện không tồn tại",
   image_message_type: "Kiểu file không hợp lệ, chỉ chấp nhận file jpg và png ",
   image_message_size: "Ảnh upload tối da cho phép là 1 MB",
+  attachment_message_size: "File upload tối da cho phép là 1 MB !!!",
 };
 
 export const transSuccess = {
